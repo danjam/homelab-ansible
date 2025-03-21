@@ -1,8 +1,8 @@
-# HomelabOps
+# LabOps
 
-![HomelabOps](https://via.placeholder.com/800x200?text=HomelabOps)
+![LabOps](https://via.placeholder.com/800x200?text=LabOps)
 
-A comprehensive automation framework for managing and maintaining your home lab infrastructure. HomelabOps uses Ansible to automate system updates, Docker container management, health checks, and notifications.
+A comprehensive automation framework for managing and maintaining your home lab infrastructure. LabOps uses Ansible to automate system updates, Docker container management, health checks, and notifications.
 
 ## Features
 
@@ -17,8 +17,8 @@ A comprehensive automation framework for managing and maintaining your home lab 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/homelabops.git
-cd homelabops
+git clone https://github.com/yourusername/labops.git
+cd labops
 
 # Install required Ansible collections
 ansible-galaxy collection install -r requirements.yml
@@ -27,19 +27,19 @@ ansible-galaxy collection install -r requirements.yml
 vi inventory/hosts/ubuntu_hosts.yml
 
 # Make the script executable
-chmod +x homelabops.sh
+chmod +x labops.sh
 
 # Run the maintenance script
-./homelabops.sh
+./labops.sh
 ```
 
 ## Project Structure
 
 ```
-homelabops/
+labops/
 ├── ansible.cfg                # Ansible configuration
-├── homelabops.conf            # Configuration settings
-├── homelabops.sh              # Main execution script
+├── labops.conf            # Configuration settings
+├── labops.sh              # Main execution script
 ├── README.md                  # Project documentation
 ├── requirements.yml           # Required Ansible collections
 │
@@ -81,8 +81,8 @@ homelabops/
 
 ## Documentation
 
-- [Installation Guide](docs/installation.md) - How to install and set up HomelabOps
-- [Usage Guide](docs/usage.md) - How to use HomelabOps effectively
+- [Installation Guide](docs/installation.md) - How to install and set up LabOps
+- [Usage Guide](docs/usage.md) - How to use LabOps effectively
 - [Notification Setup](docs/notifications.md) - Configure various notification methods
 
 ## Requirements
@@ -96,7 +96,7 @@ homelabops/
 ## Command-Line Options
 
 ```bash
-Usage: ./homelabops.sh [options]
+Usage: ./labops.sh [options]
 
 Options:
   -i, --inventory INVENTORY  Specify inventory file

@@ -1,10 +1,10 @@
-# HomelabOps Installation Guide
+# LabOps Installation Guide
 
-This guide will walk you through the process of setting up HomelabOps for your home lab environment.
+This guide will walk you through the process of setting up LabOps for your home lab environment.
 
 ## Prerequisites
 
-Before installing HomelabOps, ensure you have the following prerequisites:
+Before installing LabOps, ensure you have the following prerequisites:
 
 - A control node with:
   - Python 3.8 or newer
@@ -18,8 +18,8 @@ Before installing HomelabOps, ensure you have the following prerequisites:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/homelabops.git
-cd homelabops
+git clone https://github.com/yourusername/labops.git
+cd labops
 ```
 
 ### 2. Install Required Ansible Collections
@@ -57,10 +57,10 @@ vi inventory/groups/function_groups.yml
 
 To enable notifications:
 
-1. Edit the `homelabops.conf` file:
+1. Edit the `labops.conf` file:
 
 ```bash
-vi homelabops.conf
+vi labops.conf
 ```
 
 2. Uncomment and set the notification settings:
@@ -76,7 +76,7 @@ NOTIFICATION_EMAIL="admin@example.com"
 ### 5. Make the Script Executable
 
 ```bash
-chmod +x homelabops.sh
+chmod +x labops.sh
 ```
 
 ### 6. Setup SSH Keys (Optional but Recommended)
@@ -85,7 +85,7 @@ For passwordless automation:
 
 ```bash
 # Generate an SSH key if you don't have one
-ssh-keygen -t ed25519 -C "homelabops"
+ssh-keygen -t ed25519 -C "labops"
 
 # Copy your key to each host
 ssh-copy-id user@host
@@ -98,7 +98,7 @@ If you set up SSH keys, you can use the `--no-password` option when running the 
 Run a simple check to verify everything is set up correctly:
 
 ```bash
-./homelabops.sh --list-hosts
+./labops.sh --list-hosts
 ```
 
 This should list all the hosts in your inventory without making any changes.
@@ -109,12 +109,12 @@ Once installation is complete, you can:
 
 1. Run your first maintenance operation:
    ```bash
-   ./homelabops.sh
+   ./labops.sh
    ```
 
 2. Run health checks on your systems:
    ```bash
-   ./homelabops.sh --tags healthcheck
+   ./labops.sh --tags healthcheck
    ```
 
 3. Schedule regular maintenance with cron (see [Usage Examples](usage.md)).

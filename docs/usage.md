@@ -1,6 +1,6 @@
-# HomelabOps Usage Guide
+# LabOps Usage Guide
 
-This guide explains how to effectively use HomelabOps for maintaining your home lab environment.
+This guide explains how to effectively use LabOps for maintaining your home lab environment.
 
 ## Basic Usage
 
@@ -9,7 +9,7 @@ This guide explains how to effectively use HomelabOps for maintaining your home 
 To perform a complete maintenance operation on all systems:
 
 ```bash
-./homelabops.sh
+./labops.sh
 ```
 
 This will:
@@ -24,13 +24,13 @@ To run maintenance only on specific hosts or groups:
 
 ```bash
 # Run on a specific host
-./homelabops.sh --limit seraph
+./labops.sh --limit seraph
 
 # Run on a group of hosts
-./homelabops.sh --limit storage
+./labops.sh --limit storage
 
 # Run on multiple specific hosts
-./homelabops.sh --limit "seraph,jarvis"
+./labops.sh --limit "seraph,jarvis"
 ```
 
 ### Running Specific Tasks
@@ -39,13 +39,13 @@ You can use tags to run only specific types of tasks:
 
 ```bash
 # Only run system updates
-./homelabops.sh --tags system
+./labops.sh --tags system
 
 # Only run Docker tasks
-./homelabops.sh --tags docker
+./labops.sh --tags docker
 
 # Run both system and Docker tasks but skip backup
-./homelabops.sh --tags "system,docker"
+./labops.sh --tags "system,docker"
 ```
 
 ## Advanced Usage
@@ -55,7 +55,7 @@ You can use tags to run only specific types of tasks:
 To see what changes would be made without actually making them:
 
 ```bash
-./homelabops.sh --check
+./labops.sh --check
 ```
 
 ### Verbosity Levels
@@ -64,13 +64,13 @@ You can increase the verbosity for more detailed output:
 
 ```bash
 # Normal verbosity
-./homelabops.sh
+./labops.sh
 
 # Increased verbosity
-./homelabops.sh --verbose
+./labops.sh --verbose
 
 # Maximum verbosity
-./homelabops.sh -vvv
+./labops.sh -vvv
 ```
 
 ### SSH Key Authentication
@@ -78,12 +78,12 @@ You can increase the verbosity for more detailed output:
 If you've set up SSH keys, you can skip password prompts:
 
 ```bash
-./homelabops.sh --no-password
+./labops.sh --no-password
 ```
 
 ## Automation with Cron
 
-You can schedule HomelabOps to run automatically using cron:
+You can schedule LabOps to run automatically using cron:
 
 ```bash
 # Edit your crontab
@@ -94,15 +94,15 @@ Add one of these example entries:
 
 ```
 # Run weekly maintenance on Sunday at 2 AM
-0 2 * * 0 /path/to/homelabops/homelabops.sh --no-password >> /path/to/homelabops/logs/cron.log 2>&1
+0 2 * * 0 /path/to/labops/labops.sh --no-password >> /path/to/labops/logs/cron.log 2>&1
 ```
 
 ## Configuration File
 
-You can customize default settings in the `homelabops.conf` file:
+You can customize default settings in the `labops.conf` file:
 
 ```bash
-vi homelabops.conf
+vi labops.conf
 ```
 
 This lets you set defaults for inventory location, playbook selection, backup retention, and more.
@@ -113,13 +113,13 @@ Here are some useful example commands:
 
 ```bash
 # Update only Ubuntu systems
-./homelabops.sh --limit ubuntu --tags system
+./labops.sh --limit ubuntu --tags system
 
 # Only update Docker containers on storage servers
-./homelabops.sh --limit storage --tags docker
+./labops.sh --limit storage --tags docker
 
 # Only perform health checks on all systems
-./homelabops.sh --tags healthcheck
+./labops.sh --tags healthcheck
 ```
 
 For more information, see the [Customizing Guide](customizing.md).

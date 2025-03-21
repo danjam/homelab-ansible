@@ -1,6 +1,6 @@
-# HomelabOps Notification Guide
+# LabOps Notification Guide
 
-HomelabOps supports multiple notification methods to keep you informed about maintenance operations, backups, and system alerts.
+LabOps supports multiple notification methods to keep you informed about maintenance operations, backups, and system alerts.
 
 ## Available Notification Methods
 
@@ -10,7 +10,7 @@ Email notifications send detailed information about operations to your specified
 
 **Configuration:**
 ```bash
-# In homelabops.conf
+# In labops.conf
 SMTP_SERVER="smtp.gmail.com"
 SMTP_PORT="587"
 SMTP_USER="your-email@gmail.com"
@@ -26,7 +26,7 @@ Webhook notifications can integrate with various services like Slack, Discord, o
 
 **Configuration:**
 ```bash
-# In homelabops.conf
+# In labops.conf
 NOTIFICATION_WEBHOOK_URL="https://hooks.example.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
 NOTIFICATION_WEBHOOK_AUTH="Bearer your-token" # Optional
 ```
@@ -37,7 +37,7 @@ Telegram notifications send messages to a user or group chat via a Telegram bot.
 
 **Configuration:**
 ```bash
-# In homelabops.conf
+# In labops.conf
 TELEGRAM_BOT_TOKEN="your-bot-token"  # From @BotFather
 TELEGRAM_CHAT_ID="your-chat-id"      # User or group chat ID
 TELEGRAM_SILENT_NOTIFICATION="false" # Set to true for silent notifications
@@ -61,8 +61,8 @@ TELEGRAM_SILENT_NOTIFICATION="false" # Set to true for silent notifications
      - Access https://api.telegram.org/bot{YOUR_BOT_TOKEN}/getUpdates
      - Find the "chat" object and copy the "id" value (usually negative for groups)
 
-3. **Configure HomelabOps:**
-   - Edit your `homelabops.conf` file
+3. **Configure LabOps:**
+   - Edit your `labops.conf` file
    - Add the following lines:
      ```
      TELEGRAM_BOT_TOKEN="your-bot-token"
@@ -72,7 +72,7 @@ TELEGRAM_SILENT_NOTIFICATION="false" # Set to true for silent notifications
 4. **Test the Notification:**
    - Run a test operation like:
      ```bash
-     ./homelabops.sh --tags healthcheck
+     ./labops.sh --tags healthcheck
      ```
    - You should receive a notification in Telegram
 
@@ -88,4 +88,4 @@ All notification methods receive similar content:
 
 ## Multiple Notification Methods
 
-You can configure multiple notification methods simultaneously. HomelabOps will send notifications to all configured channels.
+You can configure multiple notification methods simultaneously. LabOps will send notifications to all configured channels.

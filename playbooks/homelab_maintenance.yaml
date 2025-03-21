@@ -16,7 +16,7 @@
     - name: Send start notification
       ansible.builtin.import_tasks: ../tasks/send_notification.yaml
       vars:
-        notification_subject: "🚀 HomelabOps Maintenance Starting"
+        notification_subject: "🚀 LabOps Maintenance Starting"
         notification_body: |
           Maintenance operations are starting on {{ ansible_play_hosts | length }} host(s).
           Targeted hosts: {{ ansible_play_hosts | join(', ') }}
@@ -106,7 +106,7 @@
     - name: Send success notification
       ansible.builtin.import_tasks: ../tasks/send_notification.yaml
       vars:
-        notification_subject: "🎉 HomelabOps Maintenance Completed Successfully"
+        notification_subject: "🎉 LabOps Maintenance Completed Successfully"
         notification_body: |
           Maintenance operations have completed successfully on all hosts.
           Total duration: {{ (total_duration / 60) | round(1) }} minutes.

@@ -1,7 +1,7 @@
 #!/bin/bash
-# HomelabOps Maintenance Script
+# LabOps Maintenance Script
 # A comprehensive automation framework for managing home lab infrastructure
-# Usage: ./homelabops.sh [options]
+# Usage: ./labops.sh [options]
 
 set -e
 
@@ -15,8 +15,8 @@ ASK_PASS="-kK"
 TAGS=""
 VERBOSE=""
 LOG_DIR="logs"
-LOG_FILE="${LOG_DIR}/homelabops_$(date +%Y%m%d_%H%M%S).log"
-CONFIG_FILE="homelabops.conf"
+LOG_FILE="${LOG_DIR}/labops_$(date +%Y%m%d_%H%M%S).log"
+CONFIG_FILE="labops.conf"
 
 # Create logs directory if it doesn't exist
 mkdir -p "$LOG_DIR"
@@ -25,7 +25,7 @@ mkdir -p "$LOG_DIR"
 function show_banner {
     echo "╔════════════════════════════════════════════════════════╗"
     echo "║                                                        ║"
-    echo "║                     HomelabOps                         ║"
+    echo "║                     LabOps                         ║"
     echo "║            Automated Homelab Management                ║"
     echo "║                    Version $VERSION                      ║"
     echo "║                                                        ║"
@@ -60,7 +60,7 @@ function show_help {
 
 # Version function
 function show_version {
-    echo "HomelabOps version $VERSION"
+    echo "LabOps version $VERSION"
     exit 0
 }
 
@@ -148,7 +148,7 @@ if [ ! -z "$LIST_HOSTS" ]; then
 fi
 
 # Run the playbook and log the output
-echo "🚀 Starting HomelabOps at $(date)"
+echo "🚀 Starting LabOps at $(date)"
 echo "📋 Command: ansible-playbook $PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS"
 echo "📝 Logging to: $LOG_FILE"
 
@@ -156,9 +156,9 @@ ansible-playbook $PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK 
 ANSIBLE_EXIT_CODE=${PIPESTATUS[0]}
 
 if [ $ANSIBLE_EXIT_CODE -eq 0 ]; then
-    echo "✅ HomelabOps completed successfully at $(date)"
+    echo "✅ LabOps completed successfully at $(date)"
 else
-    echo "❌ HomelabOps failed with exit code $ANSIBLE_EXIT_CODE at $(date)"
+    echo "❌ LabOps failed with exit code $ANSIBLE_EXIT_CODE at $(date)"
     echo "📝 Check $LOG_FILE for details"
 fi
 
