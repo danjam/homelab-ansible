@@ -41,13 +41,13 @@
         maintenance_start_time: "{{ ansible_date_time.iso8601 }}"
       tags: always
 
-    - name: Notify maintenance start
-      ansible.builtin.import_tasks: ../tasks/send_notification.yaml
-      vars:
-        notification_subject: "🧰 Maintenance starting on {{ inventory_hostname }}"
-        notification_body: "System maintenance is starting at {{ maintenance_start_time }}"
-      when: notification_enabled | bool
-      tags: ['notification']
+    # - name: Notify maintenance start
+    #   ansible.builtin.import_tasks: ../tasks/send_notification.yaml
+    #   vars:
+    #     notification_subject: "🧰 Maintenance starting on {{ inventory_hostname }}"
+    #     notification_body: "System maintenance is starting at {{ maintenance_start_time }}"
+    #   when: notification_enabled | bool
+    #   tags: ['notification']
 
   tasks:
     - name: Include healthcheck tasks

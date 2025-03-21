@@ -1,55 +1,107 @@
 ---
-# Main inventory file that includes all other inventory files
-
-# Include global variables
+# Main inventory file
 all:
   children:
-    # Import host definitions
-    ubuntu:
-    synology:
-    windows:
-    apple:
     
-    # Import group definitions
-    linux:
-    unix_like:
-    all_systems:
+    # OS-based groups -----------------------------------------------------------------------------
+
+    ubuntu:
+      hosts:
+        seraph:
+          ansible_host: 100.76.155.100
+        orac:
+          ansible_host: 100.111.153.113
+        jarvis:
+          ansible_host: 100.90.148.27
+        valis:
+          ansible_host: 100.124.86.39
+          ansible_user: root
+      vars:
+        ansible_python_interpreter: auto_silent
+        ansible_user: danjam
+        ansible_become: yes
+        ansible_become_method: sudo
+        update_timeout: 600
+        reboot_timeout: 300
+        post_reboot_delay: 30
+        critical_services:
+          - ssh
+          - docker
+
+    synology:
+      hosts:
+        harlans_world:
+          ansible_host: 100.102.133.94
+          ansible_user: danjam
+      vars:
+        ansible_user: danjam
+        ansible_become: yes
+        update_timeout: 1200
+        # backup_before_update: yes
+
+    windows:
+      hosts:
+        nucleus:
+          ansible_host: 100.127.84.23
+          ansible_user: danjam
+        glados:
+          ansible_host: 100.68.128.124
+          ansible_user: dsjam
+      vars:
+        ansible_connection: winrm
+        ansible_winrm_server_cert_validation: ignore
+        ansible_winrm_transport: ntlm
+        ansible_user: administrator
+
+    apple:
+      hosts:
+        work-macbook:
+          ansible_host: 100.95.100.54
+          ansible_user: dannyjames
+      vars:
+        ansible_user: danjam
+        ansible_become: yes
+        ansible_become_method: sudo
+
+    # Functional groups defined by the hosts they contain -----------------------------------------
+
     storage:
+      hosts:
+        harlans_world:
+    
     workstations:
+      hosts:
+        work-macbook:
+        nucleus:
+        glados:
+
     homelab:
+      children:
+        ubuntu:
 
-# Import host files
-ubuntu:
-  import_host_vars: hosts/ubuntu_hosts.yml
-  import_playbook: vars/ubuntu_vars.yml
+    # OS-family groups ----------------------------------------------------------------------------
 
-synology:
-  import_host_vars: hosts/synology_hosts.yml
-  import_playbook: vars/synology_vars.yml
+    linux:
+      children:
+        ubuntu:
+        synology:
+    
+    unix_like:
+      children:
+        linux:
+        apple:
+    
+    all_systems:
+      children:
+        unix_like:
+        windows:
 
-windows:
-  import_host_vars: hosts/windows_hosts.yml
-  import_playbook: vars/windows_vars.yml
+  # Global variables ###############################################################################
 
-apple:
-  import_host_vars: hosts/apple_hosts.yml
-  import_playbook: vars/apple_vars.yml
-
-# Import group definition files
-linux:
-  import_playbook: groups/os_groups.yml
-  
-unix_like:
-  import_playbook: groups/os_groups.yml
-  
-all_systems:
-  import_playbook: groups/os_groups.yml
-  
-storage:
-  import_playbook: groups/function_groups.yml
-  
-workstations:
-  import_playbook: groups/function_groups.yml
-  
-homelab:
-  import_playbook: groups/function_groups.yml
+  vars:
+    ansible_connection: ssh
+    ansible_ssh_timeout: 30
+    default_docker_path: /opt/homelab
+    notification_email: ansible@dannyjames.net
+    # backup_retention_days: 7
+    enable_monitoring: yes

@@ -18,7 +18,7 @@ Before installing LabOps, ensure you have the following prerequisites:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/labops.git
+git clone https://github.com/danjam/labops.git
 cd labops
 ```
 

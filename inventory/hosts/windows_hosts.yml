@@ -1,8 +1,0 @@
----
-# Windows hosts
-windows:
-  hosts:
-    nucleus:
-      ansible_host: 100.127.84.23
-    glados:
-      ansible_host: 100.68.128.124

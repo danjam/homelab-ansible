@@ -17,7 +17,7 @@ A comprehensive automation framework for managing and maintaining your home lab 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/labops.git
+git clone https://github.com/danjam/labops.git
 cd labops
 
 # Install required Ansible collections

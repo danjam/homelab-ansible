@@ -3,6 +3,7 @@
 # A comprehensive automation framework for managing home lab infrastructure
 # Usage: ./labops.sh [options]
 
+# exit if any command fails
 set -e
 
 # Script version
@@ -140,6 +141,8 @@ if [ ! -f "$PLAYBOOK" ]; then
     exit 1
 fi
 
+export ANSIBLE_CONFIG="$(pwd)/ansible.cfg"
+
 # If listing hosts, just do that and exit
 if [ ! -z "$LIST_HOSTS" ]; then
     echo "📋 Listing hosts in inventory:"
@@ -151,6 +154,8 @@ fi
 echo "🚀 Starting LabOps at $(date)"
 echo "📋 Command: ansible-playbook $PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS"
 echo "📝 Logging to: $LOG_FILE"
+
+echo "$PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS"
 
 ansible-playbook $PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS 2>&1 | tee "$LOG_FILE"
 ANSIBLE_EXIT_CODE=${PIPESTATUS[0]}
