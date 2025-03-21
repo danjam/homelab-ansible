@@ -26,7 +26,7 @@ mkdir -p "$LOG_DIR"
 function show_banner {
     echo "╔════════════════════════════════════════════════════════╗"
     echo "║                                                        ║"
-    echo "║                     LabOps                         ║"
+    echo "║                     LabOps                             ║"
     echo "║            Automated Homelab Management                ║"
     echo "║                    Version $VERSION                      ║"
     echo "║                                                        ║"
@@ -155,8 +155,6 @@ echo "🚀 Starting LabOps at $(date)"
 echo "📋 Command: ansible-playbook $PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS"
 echo "📝 Logging to: $LOG_FILE"
 
-echo "$PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS"
-
 ansible-playbook $PLAYBOOK $ASK_PASS -i $INVENTORY $TAGS $VERBOSE $LIMIT $CHECK $EXTRA_VARS 2>&1 | tee "$LOG_FILE"
 ANSIBLE_EXIT_CODE=${PIPESTATUS[0]}
 
@@ -164,7 +162,7 @@ if [ $ANSIBLE_EXIT_CODE -eq 0 ]; then
     echo "✅ LabOps completed successfully at $(date)"
 else
     echo "❌ LabOps failed with exit code $ANSIBLE_EXIT_CODE at $(date)"
-    echo "📝 Check $LOG_FILE for details"
+    echo "📝 Check $LOG_DIR/$LOG_FILE for details"
 fi
 
 exit $ANSIBLE_EXIT_CODE
