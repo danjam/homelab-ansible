@@ -1,3 +1,4 @@
-.vscode
+.ansible_cache
 .idea
-logs/*
+.vscode
+logs

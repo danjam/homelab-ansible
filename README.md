@@ -1,7 +1,5 @@
 # LabOps
 
-![LabOps](https://via.placeholder.com/800x200?text=LabOps)
-
 A comprehensive automation framework for managing and maintaining your home lab infrastructure. LabOps uses Ansible to automate system updates, Docker container management, health checks, and notifications.
 
 ## Features
@@ -23,8 +21,8 @@ cd labops
 # Install required Ansible collections
 ansible-galaxy collection install -r requirements.yml
 
-# Configure your inventory by editing files in inventory/hosts/ directory
-vi inventory/hosts/ubuntu_hosts.yml
+# Configure your inventory
+vi inventory/inventory.yml
 
 # Make the script executable
 chmod +x labops.sh
@@ -38,10 +36,9 @@ chmod +x labops.sh
 ```
 labops/
 ├── ansible.cfg                # Ansible configuration
-├── labops.conf            # Configuration settings
-├── labops.sh              # Main execution script
+├── labops.conf                # Configuration settings
+├── labops.sh                  # Main execution script
 ├── README.md                  # Project documentation
-├── requirements.yml           # Required Ansible collections
 │
 ├── docs/                      # Documentation directory
 │   ├── installation.md        # Installation instructions
@@ -49,21 +46,7 @@ labops/
 │   └── usage.md               # Usage examples and instructions
 │
 ├── inventory/                 # Inventory structure
-│   ├── all.yml                # Global variables
-│   ├── groups/                # Group definitions
-│   │   ├── function_groups.yml # Function-based groups
-│   │   └── os_groups.yml      # OS-based groups
-│   ├── hosts/                 # Host definitions
-│   │   ├── apple_hosts.yml    # Apple/macOS hosts
-│   │   ├── synology_hosts.yml # Synology NAS hosts
-│   │   ├── ubuntu_hosts.yml   # Ubuntu Linux hosts
-│   │   └── windows_hosts.yml  # Windows hosts
-│   ├── inventory.yml          # Main inventory file
-│   └── vars/                  # Group variables
-│       ├── apple_vars.yml     # Apple/macOS variables
-│       ├── synology_vars.yml  # Synology variables
-│       ├── ubuntu_vars.yml    # Ubuntu variables
-│       └── windows_vars.yml   # Windows variables
+│   └── inventory.yml          # Main inventory file
 │
 ├── logs/                      # Log directory
 │   └── .gitkeep               # Placeholder to maintain directory
@@ -100,7 +83,9 @@ Usage: ./labops.sh [options]
 
 Options:
   -i, --inventory INVENTORY  Specify inventory file
+                             (default: inventory/inventory.yml)
   -p, --playbook PLAYBOOK    Specify playbook file
+                             (default: playbooks/homelab_maintenance.yaml)
   -t, --tags TAGS            Specify tags (e.g., system,docker)
   -v, --verbose              Increase verbosity (-v, -vv, or -vvv)
   -S, --no-password          Don't ask for passwords (use SSH keys)
@@ -111,24 +96,49 @@ Options:
   -h, --help                 Show this help message
 ```
 
-## Contributing
+## Key Features
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### System Health Checks
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+LabOps performs comprehensive health checks on all systems, including:
+
+- Disk space monitoring (warns at 85% usage)
+- Memory usage monitoring (warns at 90% usage)
+- System load analysis
+- Process monitoring
+- Available updates detection
+
+### System Updates
+
+For Ubuntu systems, LabOps:
+
+- Safely updates all packages
+- Handles package dependencies
+- Manages kernel updates with controlled reboots
+- Reports update statistics
+- Verifies system health after updates
+
+### Docker Management
+
+The Docker management module:
+
+- Updates container images
+- Restarts containers with new images
+- Health-checks containers after updates
+- Prunes unused resources
+- Reports container status
+
+### Notification System
+
+LabOps includes a flexible notification system supporting:
+
+- Email notifications via SMTP
+- Webhook notifications (for services like Slack, Discord)
+- Telegram notifications
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- The Ansible community for their excellent documentation
-- All contributors to the project
 
 ## Support
 
