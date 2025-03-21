@@ -1,0 +1,8 @@
+---
+# Variables for Synology hosts
+synology:
+  vars:
+    ansible_user: admin
+    ansible_become: yes
+    update_timeout: 1200  # Longer timeout for Synology updates
+    backup_before_update: yes

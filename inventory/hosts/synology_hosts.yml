@@ -1,0 +1,6 @@
+---
+# Synology NAS hosts
+synology:
+  hosts:
+    harlans_world:
+      ansible_host: 100.102.133.94

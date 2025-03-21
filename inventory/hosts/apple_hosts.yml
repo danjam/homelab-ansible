@@ -1,0 +1,6 @@
+---
+# Apple macOS hosts
+apple:
+  hosts:
+    work-macbook:
+      ansible_host: 100.95.100.54

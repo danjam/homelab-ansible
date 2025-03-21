@@ -1,0 +1,55 @@
+---
+# Main inventory file that includes all other inventory files
+
+# Include global variables
+all:
+  children:
+    # Import host definitions
+    ubuntu:
+    synology:
+    windows:
+    apple:
+    
+    # Import group definitions
+    linux:
+    unix_like:
+    all_systems:
+    storage:
+    workstations:
+    homelab:
+
+# Import host files
+ubuntu:
+  import_host_vars: hosts/ubuntu_hosts.yml
+  import_playbook: vars/ubuntu_vars.yml
+
+synology:
+  import_host_vars: hosts/synology_hosts.yml
+  import_playbook: vars/synology_vars.yml
+
+windows:
+  import_host_vars: hosts/windows_hosts.yml
+  import_playbook: vars/windows_vars.yml
+
+apple:
+  import_host_vars: hosts/apple_hosts.yml
+  import_playbook: vars/apple_vars.yml
+
+# Import group definition files
+linux:
+  import_playbook: groups/os_groups.yml
+  
+unix_like:
+  import_playbook: groups/os_groups.yml
+  
+all_systems:
+  import_playbook: groups/os_groups.yml
+  
+storage:
+  import_playbook: groups/function_groups.yml
+  
+workstations:
+  import_playbook: groups/function_groups.yml
+  
+homelab:
+  import_playbook: groups/function_groups.yml

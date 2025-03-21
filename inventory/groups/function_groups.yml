@@ -1,0 +1,23 @@
+---
+# Function-based group definitions
+
+# Storage servers group
+storage:
+  hosts:
+    harlans_world:  # Synology NAS
+
+# Workstations group
+workstations:
+  hosts:
+    work-macbook:  # Apple workstation
+    nucleus:       # Windows workstation
+    glados:        # Windows workstation
+
+# Homelab infrastructure group (all managed servers)
+homelab:
+  children:
+    linux:      # Include all Linux systems
+    storage:    # Include all storage systems
+  hosts:
+    valis:      # Ensure specific hosts are included
+    jarvis:

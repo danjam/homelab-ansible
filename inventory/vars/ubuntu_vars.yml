@@ -1,0 +1,14 @@
+---
+# Variables for Ubuntu hosts
+ubuntu:
+  vars:
+    ansible_python_interpreter: auto_silent
+    ansible_user: danjam
+    ansible_become: yes
+    ansible_become_method: sudo
+    update_timeout: 600
+    reboot_timeout: 300
+    post_reboot_delay: 30
+    critical_services:
+      - ssh
+      - docker
